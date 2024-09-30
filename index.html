@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experience</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .hidden {
+            display: none;
+        }
+        .full-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+        }
+        .button {
+            padding: 15px 30px;
+            font-size: 20px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border: 2px solid white;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: rgba(255, 255, 255, 0.4);
+        }
+        #skip-button {
+            position: absolute;
+            bottom: 20px; /* Adjust this value to change vertical position */
+            left: 50%; /* Move to the center */
+            transform: translateX(-20%); /* Adjust to move slightly left */
+        }
+    </style>
+</head>
+<body>
+
+    <div id="initial-screen">
+        <button class="button" id="enter-button">Enter the Experience</button>
+    </div>
+
+    <div id="death-screen" class="hidden full-screen" style="background-image: url('death.png');">
+        <button class="button" id="skip-button">Skip to 3:21</button>
+    </div>
+
+    <div id="dead-screen" class="hidden full-screen" style="background-image: url('dead.png');"></div>
+
+    <audio id="music" src="music.mp3" preload="auto"></audio>
+    <audio id="skip-sound" src="321.mp3" preload="auto"></audio>
+
+    <script>
+        const enterButton = document.getElementById('enter-button');
+        const skipButton = document.getElementById('skip-button');
+        const initialScreen = document.getElementById('initial-screen');
+        const deathScreen = document.getElementById('death-screen');
+        const deadScreen = document.getElementById('dead-screen');
+        const music = document.getElementById('music');
+        const skipSound = document.getElementById('skip-sound');
+
+        enterButton.onclick = () => {
+            music.play();
+            initialScreen.classList.add('hidden');
+            deathScreen.classList.remove('hidden');
+        };
+
+        skipButton.onclick = () => {
+            skipSound.play();
+            deathScreen.classList.add('hidden');
+            deadScreen.classList.remove('hidden');
+        };
+    </script>
+
+</body>
+</html>
